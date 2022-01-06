@@ -50,7 +50,7 @@ test("checks if player is alive or not", () => {
   expect(player.isAlive()).toBeFalsy();
 });
 
-test("", () => {
+test("subtracts from player's health", () => {
   const player = new Player("dave");
   const oldHealth = player.health;
 
@@ -62,3 +62,20 @@ test("", () => {
 
   expect(player.health).toBe(0);
 });
+
+test("get player's attack value", () => {
+  const player = new Player("dave");
+  player.strength = 10;
+
+  expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+  expect(player.getAttackValue()).toBeLessThanOrEqual(15);
+});
+
+test("add potion to the inventory", () => {
+  const player = new Player("dave");
+  const oldCount = player.inventory.length;
+
+  player.addPotion(new Potion());
+
+  expect(player.inventory.length).toBeGreaterThan(oldCount);
+})
